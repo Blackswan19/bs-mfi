@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSMFI Portfolio - Exclusive Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; letter-spacing:0.6px;}
+        :root {
+            --main-blue: #0000e6;
+            --light-blue: #f0f0ff;
+            --text: #000000;
+            --light-text: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #ffffff;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #password-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--main-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease;
+        }
+
+        #password-form {
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            color: var(--light-text);
+        }
+
+        #password-form img {
+            width: 320px;
+        }
+
+        #password-form label {
+           font-size: 25px;
+    font-style: italic;
+    display: block;
+    margin-bottom: 50px;
+        }
+
+        #password-input {
+        padding: 15px;
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--light-text);
+    background: transparent;
+    color: var(--light-text);
+    text-align: center;
+    margin-bottom: 10px;
+    outline: none;
+    font-family: "Red Hat Display", sans-serif;
+        }
+
+        #password-input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        #submit-btn {
+          margin-top: 24px;
+    padding: 14px 48px;
+    background: transparent;
+    border: 1px solid;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    font-family: "Red Hat Display", sans-serif;
+    transition: all 0.3s ease;
+        }
+
+        #submit-btn:hover {
+            background: var(--light-text);
+            color: var(--main-blue);
+        }
+
+        #saved-message {
+           margin-top: 30px;
+    font-size: 13px;
+    transition: opacity 0.6s ease;
+    position: fixed;
+    top: 10px;
+    width: 100%;
+    transform: translate(-50%, -100%);
+    left: 50%;
+    background: black;
+    padding: 10px;
+        }
+
+        #main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        header {
+               text-align: center;
+    background-color: var(--light-blue);
+    position: sticky;
+    top: 0px;
+        }
+
+        header img {
+            width: 100px;
+        }
+
+        .current-date {
+           text-align: center;
+    font-size: 15px;
+    color: #333;
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 600;
+        }
+span#grand-total-amount {
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 15px;
+}
+        .profile-header {
+            text-align: center;
+            padding:20px;
+        }
+
+        .membership-icon {
+           width: 40px;
+    height: 40px;
+    margin-bottom: 0px;
+    background: black;
+    padding: 10px;
+    border-radius: 50%;
+        }
+
+        .client-name {
+          font-size: 25px;
+    margin: 10px 0 15px 0;
+    color: #ffffff;
+        }
+
+        .membership-type {
+            font-size: 15px;
+    font-style: italic;
+    color: #000000;
+        }
+
+        .stats-grid {
+           display: flex;
+    margin: 10px auto;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background: #00000017;
+        }
+
+       
+
+        .stat-card h3 {
+           font-size: 18px;
+    color: var(--main-blue);
+        }
+
+        .stat-value {
+              font-size: 16px;
+    font-weight: 600;
+    color: var(--main-blue);
+    font-family: "Red Hat Display", sans-serif;
+
+        }
+
+        .custom-content {
+            text-align: center;
+            margin: 35px;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .custom-content p {
+            margin-bottom: 40px;
+        }
+
+        .custom-content a {
+            background: var(--main-blue);
+    color: white;
+    transition: 0.4s;
+    text-decoration: none;
+    padding: 10px;
+        }
+
+        .custom-content a:hover {
+            background: #0000b3;
+        }
+
+        .amounts-section {
+           margin: 50px auto;
+    max-width: 1200px;
+    padding: 0 20px;
+        }
+
+        .amounts-section h2 {
+            font-size: 21px;
+    text-align: center;
+    margin-bottom: unset;
+    color: #000000;
+        }
+
+        .amount-buttons {
+         display: flex;
+    gap: 30px;
+    margin-bottom: 80px;
+    overflow: auto;
+    padding: 20px;
+    position: sticky;
+    top: 105px;
+    background: white;
+    width: 100%;
+    scrollbar-width: thin;
+        }
+#loan-panels h3 {
+text-align: center;
+    margin: 0px;
+    color: var(--main-blue);
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 15px;
+    border-bottom: solid;
+    padding: 15px;
+    background: black;
+}
+        .amount-btn {
+          background: transparent;
+    color: blue;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s;
+    padding: 12px 16px;
+    font-size: 13px;
+    width: fit-content;
+    white-space: nowrap;
+    border: solid;
+    font-family: "Red Hat Display", sans-serif;
+        }
+
+        .amount-btn:hover, .amount-btn.active {
+           background: #0000b3;
+    color: #ffffff;
+    border: solid blue;
+        }
+
+        .loan-details-panel {
+            display: none;
+            background: #f9f9f9;
+            padding: 0px;
+            border: 1px solid #ddd;
+            margin-top: 40px;
+        }
+
+        .loan-details-panel.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+    border-collapse: collapse;
+    font-size: 1.15rem;
+    margin-top: -40px;
+        }
+
+        th, td {
+              padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: 900;
+        }
+td {
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: end;
+}
+        th {
+            color: var(--main-blue);
+        }
+
+        .summary-row td {
+            font-weight: bold;
+            font-size: 15px;
+            background: black;
+            color: white;
+        }
+
+        .total-repay {
+            color: #b30000;
+            font-weight: bold;
+        }
+
+        .grand-total {
+            text-align: center;
+    padding: 10px;
+    background: var(--main-blue);
+    color: white;
+    font-size: 20px;
+    width: 100%;
+    margin-top: 10px;
+        }
+
+        footer {
+         text-align: center;
+    padding: 20px 0px 55px 0px;
+    font-size: 14px;
+    color: #000000c9;
+    font-family: "Red Hat Display", sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            #password-form img { width: 260px; }
+        }
+
+        @media (max-width: 480px) {
+            #password-form img { width: 220px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="password-overlay">
+        <div id="password-form">
+            <img src="https://i.ibb.co/bjy8q1jz/bsmfi-logo.png" alt="BSMFI">
+            <label for="password-input">My account</label>
+            <input type="text" id="password-input" placeholder="Enter password">
+            <div id="saved-message"></div>
+            <br><br>
+            <button id="submit-btn">Enter</button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <header>
+            <img src="https://i.ibb.co/bjy8q1jz/bsmfi-logo.png" alt="BSMFI">
+        </header>
+
+        <p class="current-date"><span id="current-date-display">December 15, 2025</span></p>
+
+        <div class="profile-header" id="profile-bg">
+            <img id="membership-icon" class="membership-icon" src="" alt="Membership Icon">
+            <h2 class="client-name" id="client-name"></h2>
+            <p class="membership-type" id="membership-type" style="display: none;"></p>
+        </div>
+ <div class="grand-total" id="grand-total">
+                Total Amount to Repay: ₹<span id="grand-total-amount">0</span>
+            </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Stars</h3>
+                <p class="stat-value" id="stars">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Duplicate</h3>
+                <p class="stat-value" id="coins">0</p>
+            </div>
+            <div class="stat-card" style="display: none;">
+                <h3>Tier Points</h3>
+                <p class="stat-value" id="tier-points">0</p>
+            </div>
+        </div>
+
+        <div class="custom-content" id="custom-content"></div>
+
+        <div class="amounts-section">
+            <h2>Amounts Borrowed</h2>
+            <div class="amount-buttons" id="amount-buttons"></div>
+
+            <div id="loan-panels"></div>
+        </div>
+
+        <footer>
+           © BS&MFI. All rights reserved.
+        </footer>
+    </div>
+
+    <script>
+        const CURRENT_DATE = new Date("2025-12-15");
+        const STORAGE_KEY = "bsmfi_saved_password";
+        const MESSAGE_DELAY = 1000;
+
+        const data = {
+            "6275": {
+                name: "Srikanth Jampana",
+                membershipType: "Duplicate clone",
+                membershipIcon: "https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/100/2.gif",
+                profileBackground: "red",
+                stars: 0,
+                coins: 1,
+                tierPoints: 5,
+                showCustomContent: "no",
+                customContent: { url: "https://mfi0212.github.io/swan/offer/programx" },
+                loans: [
+                    { planDate: "10-08-2025", endDate: "25-08-2025", interest: 1360, takenAmount: 5000, takenFrom: "MLLD", fineRate: 86 },
+                    { planDate: "15-08-2025", endDate: "30-08-2025", interest: 4800, takenAmount: 20000, takenFrom: "MLending", fineRate: 320 },
+                    { planDate: "16-08-2025", endDate: "31-08-2025", interest: 1275, takenAmount: 5000, takenFrom: "MLLD", fineRate: 90 },
+                    { planDate: "18-08-2025", endDate: "02-09-2025", interest: 1380, takenAmount: 5000, takenFrom: "MLLD", fineRate: 88 },
+                    { planDate: "18-08-2025", endDate: "02-09-2025", interest: 690, takenAmount: 2500, takenFrom: "MLLD", fineRate: 46 },
+                    { planDate: "01-11-2025", endDate: "01-12-2025", interest: 3560, takenAmount: 5000, takenFrom: "Lendlink - LID", fineRate: 90 },
+                    { planDate: "06-11-2025", endDate: "01-12-2025", interest: 4880, takenAmount: 10000, takenFrom: "P2P lend", fineRate: 180 },
+                    { planDate: "09-11-2025", endDate: "01-12-2025", interest: 3860, takenAmount: 7500, takenFrom: "MLLD", fineRate: 120 },
+                    { planDate: "25-11-2025", endDate: "10-12-2025", interest: 900, takenAmount: 3000, takenFrom: "MLending Duplicate ", fineRate: 46 }
+                ]
+            },
+             "4211": {
+        name: "Chaitanya Harsha",
+        membershipType: "",
+        membershipIcon: "https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/100/2.gif",
+        profileBackground: "#ff8b24",
+        stars: 0,
+        coins: 0,
+        tierPoints: 45,
+        showCustomContent: "no",
+        customContent: {
+            type: "text",
+            value: "NOTE: Your amounts has updated to match the offer criteria",
+            url: ""
+        },
+        loans: [
+           { planDate: "24-05-2025", endDate: "-- <p style='color: #ff36ff;'>(Interest adding stopped by #PY@0212)</p>", interest: 0, takenAmount: 25000, takenFrom: "MLending", fineRate: 5 },
+           { planDate: "07-04-2025", endDate: "--<p style='color: #ff36ff;'>(Interest adding stopped by #PY@0212)</p>", interest: 0, takenAmount: 15000, takenFrom: "MLLD", fineRate: 4 }
+        ]
+    },
+            "Mahesh888*": {
+                name: "Mahesh Muthinti",
+                membershipType: "Duplicate clone",
+                membershipIcon: "https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/100/2.gif",
+                profileBackground: "#fd780f",
+                stars: 0,
+                coins: 1,
+                tierPoints: 5,
+                showCustomContent: "no",
+                loans: [
+                    { planDate: "25-05-2025", endDate: "19-12-2025(Extended to 15 days)", interest: 1000, takenAmount: 6420, takenFrom: "Delayit offer", fineRate: 50 },
+                    { planDate: "03-12-2025", endDate: "02-01-2026", interest: 1705, takenAmount: 5500, takenFrom: "MLendings", fineRate: 40 },
+                    { planDate: "29-09-2025", endDate: "12-01-2026(Extended to 30 days)", interest: 1600, takenAmount: 6100, takenFrom: "MLLD", fineRate: 40 },
+                ],
+            },
+            "Cherish@123": {
+                name: "Cherish #1",
+                membershipType: "",
+                membershipIcon: "https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/100/2.gif",
+                profileBackground: "red",
+                stars: 0,
+                coins: 0,
+                tierPoints: 40,
+                showCustomContent: "no",
+                customContent: { url: "https://mfi0212.github.io/swan/offer/programx" },
+                loans: [
+                    { planDate: "14-10-2025", endDate: "-- (Interest adding stopped by #PY@0212)", interest: 0, takenAmount: 6690, takenFrom: "MLLD", fineRate: 0 },
+                    { planDate: "14-10-2025", endDate: "-- (Interest adding stopped by #PY@0212)", interest: 0, takenAmount: 5880, takenFrom: "MLLD", fineRate: 0 },
+                    { planDate: "14-10-2025", endDate: "-- (Interest adding stopped by #PY@0212)", interest: 0, takenAmount: 5560, takenFrom: "MLLD(Offer)", fineRate: 0 }
+                ]
+            },
+             "Cherish@1234": {
+        name: "Cherish #2",
+        membershipType: "",
+        membershipIcon: "https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/100/2.gif",
+        profileBackground: "rgb(90 135 242)",
+        stars: 0,
+        coins: 0,
+        tierPoints: 0,
+        showCustomContent: "no",
+        customContent: {
+            type: "image",
+            value: "programXoffer.png",
+            url: "https://mfi0212.github.io/swan/offer/programx"
+        },
+        loans: [
+            { planDate: "29-05-2025", endDate: "29-05-2025", interest: 5600, takenAmount: 25000, takenFrom: "MLending", fineRate: 80 }
+        ]
+    },
+        };
+
+        function parseDate(dateStr) {
+            if (!dateStr || dateStr.includes("--")) return null;
+            const mainPart = dateStr.split("(")[0].trim();
+            const [d, m, y] = mainPart.split("-").map(Number);
+            return new Date(y, m - 1, d);
+        }
+
+        function calculateOverdue(loan) {
+            const end = parseDate(loan.endDate);
+            if (!end) return { days: 0, fine: 0 };
+            const diffMs = CURRENT_DATE - end;
+            const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+            const overdueDays = Math.max(0, diffDays);
+            return { days: overdueDays, fine: overdueDays * loan.fineRate };
+        }
+
+        // On page load: fill saved password with 1-second delay and show message
+        window.addEventListener("load", () => {
+            const savedPass = localStorage.getItem(STORAGE_KEY);
+            const messageEl = document.getElementById("saved-message");
+
+            if (savedPass && data[savedPass]) {
+                setTimeout(() => {
+                    document.getElementById("password-input").value = savedPass;
+                    messageEl.textContent = "Powered by BsPsgenerater";
+                    messageEl.style.opacity = "1";
+                }, MESSAGE_DELAY);
+            }
+        });
+
+        document.getElementById("submit-btn").addEventListener("click", function() {
+            const input = document.getElementById("password-input").value.trim();
+            const profile = data[input];
+
+            if (profile) {
+                localStorage.setItem(STORAGE_KEY, input);
+
+                const overlay = document.getElementById("password-overlay");
+                overlay.style.opacity = "0";
+                setTimeout(() => {
+                    overlay.style.display = "none";
+                    document.getElementById("main-content").style.display = "block";
+                    setTimeout(() => { document.getElementById("main-content").style.opacity = "1"; }, 100);
+                }, 800);
+
+                // Populate data
+                document.getElementById("client-name").textContent = profile.name;
+                document.getElementById("membership-type").textContent = profile.membershipType || "Premium Member";
+                document.getElementById("membership-icon").src = profile.membershipIcon;
+                document.getElementById("profile-bg").style.backgroundColor = profile.profileBackground;
+
+                document.getElementById("stars").textContent = profile.stars;
+                document.getElementById("coins").textContent = profile.coins;
+                document.getElementById("tier-points").textContent = profile.tierPoints;
+
+                const customDiv = document.getElementById("custom-content");
+                if (profile.showCustomContent === "yes") {
+                    customDiv.innerHTML = `
+                        <p>A special Diwali Program X offer is available for premium members: <strong>25% discount</strong> on the total amount (pay only 75%).</p>
+                        <a href="${profile.customContent.url}" target="_blank">View Details & Apply Now →</a>
+                    `;
+                } else {
+                    customDiv.innerHTML = "";
+                }
+
+                const buttonsContainer = document.getElementById("amount-buttons");
+                const panelsContainer = document.getElementById("loan-panels");
+                buttonsContainer.innerHTML = "";
+                panelsContainer.innerHTML = "";
+                let grandTotal = 0;
+
+                profile.loans.forEach((loan, index) => {
+                    const overdue = calculateOverdue(loan);
+                    const totalForThis = loan.takenAmount + loan.interest + overdue.fine;
+                    grandTotal += totalForThis;
+
+                    const btn = document.createElement("button");
+                    btn.className = "amount-btn";
+                    btn.textContent = `Amount ${index + 1} (₹${loan.takenAmount})`;
+                    btn.dataset.index = index;
+                    buttonsContainer.appendChild(btn);
+
+                    const panel = document.createElement("div");
+                    panel.className = "loan-details-panel";
+                    panel.id = `panel-${index}`;
+                    let overdueRows = "";
+                    let statusRow = '<tr><th>Status</th><td>No overdue</td></tr>';
+                    if (overdue.days > 0) {
+                        overdueRows = `
+                        <tr><th>Overdue By</th><td style="color: #ff7400;">${overdue.days} days</td></tr>
+                        <tr><th>Overdue Interest</th><td style="color: #ff7400;">₹${overdue.fine.toLocaleString()}</td></tr>
+                        `;
+                        statusRow = "";
+                    }
+                    panel.innerHTML = `
+                        <h3 style="text-align:center; margin-bottom:40px; color:white;">
+                            Amount ${index + 1} — ₹${loan.takenAmount}
+                        </h3>
+                        <table>
+                            <tbody>
+                                <tr><th>Plan Date</th><td>${loan.planDate}</td></tr>
+                                <tr><th>End Date</th><td>${loan.endDate}</td></tr>
+                                <tr><th>Taken Amount</th><td>₹${loan.takenAmount.toLocaleString()}</td></tr>
+                                <tr><th>Interest</th><td>₹${loan.interest.toLocaleString()}</td></tr>
+                                <tr><th>Taken From</th><td>${loan.takenFrom}</td></tr>
+                                ${statusRow}
+                                ${overdueRows}
+                                <tr class="summary-row">
+                                    <td style="text-align: center;"><strong>Total to Repay</strong></td>
+                                    <td style="text-align: center;" class="total-repay"><strong>₹${totalForThis.toLocaleString()}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+                    panelsContainer.appendChild(panel);
+                });
+
+                document.getElementById("grand-total-amount").textContent = grandTotal.toLocaleString();
+
+                document.querySelectorAll(".amount-btn").forEach(btn => {
+                    btn.addEventListener("click", function() {
+                        document.querySelectorAll(".amount-btn").forEach(b => b.classList.remove("active"));
+                        document.querySelectorAll(".loan-details-panel").forEach(p => p.classList.remove("active"));
+                        this.classList.add("active");
+                        document.getElementById(`panel-${this.dataset.index}`).classList.add("active");
+                    });
+                });
+
+                if (profile.loans.length > 0) document.querySelector(".amount-btn").click();
+            } else {
+                alert("Wrong code. Try again.");
+                document.getElementById("password-input").value = "";
+                document.getElementById("saved-message").textContent = "";
+                document.getElementById("saved-message").style.opacity = "0";
+            }
+        });
+
+        document.getElementById("password-input").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") document.getElementById("submit-btn").click();
+        });
+    </script>
+</body>
+</html>
