@@ -1,579 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BS&MFI Services</title>
-     <link rel="icon" href="https://i.ibb.co/ZpVQQ2Kp/mfi-logo.png" />
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-         * { margin:0; padding:0; box-sizing:border-box;letter-spacing:0.6px; }
-        body {
-            font-family: "Red Hat Display", sans-serif;}
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;scrollbar-width: none;
-        }
-
-        :root {
-            --primary: #0000e6; /* Your main blue color */
-            --text: #1a1a1a;
-            --bg: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;scrollbar-width: none;
-        }
-* {
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        /* Login Screen */
-        #login-screen {
-            position: fixed;
-            inset: 0;
-            background-color: var(--bg);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        #main-logo {
-           width: 450px;
-    max-width: 95vw;
-    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        #main-logo.authenticated {
-            width: 100px;
-            position: fixed;
-            top: 10px;
-            left: 60px;
-            z-index: 100;
-        }
-
-        #password-form {
-           display: flex;
-    margin-top: 20px;
-    opacity: 0;
-    transition: opacity 0.8s ease 0.4s;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-        }
-
-        #password-input {
-         padding: 12px 24px;
-    font-size: 18px;
-    font-weight: 500;
-    background: transparent;
-    width: 300px;
-    text-align: center;
-    color: var(--primary);
-    outline: none;
-    border: none;
-    text-transform: none;
-    font-family: "Red Hat Display", sans-serif;
-    border-bottom: solid 1.5px #000000a6;
-        }
-        #password-input:hover{
-            background-color: rgba(0, 0, 0, 0.023);
-        }
-        #password-input:focus{
-            border-bottom: solid 2px #1100ff;
-            color: #1100ff;
-        }
-        #submit-btn {
-            margin-top: 24px;
-            padding: 14px 48px;
-            background: transparent;
-            border: 1px solid var(--primary);
-            font-size: 14px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--primary);
-            cursor: pointer;font-family: "Red Hat Display", sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        #submit-btn:hover {
-            background: var(--primary);
-            color: var(--bg);
-        }
-
-        #error-message {
-            margin-top: 16px;
-            font-size: 14px;
-            color: #a00;
-            font-weight: 300;
-        }
-
-        /* Fixed Header - Logo left, Nav right */
-        header {
-           position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
-    z-index: 90;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 60px;
-    backdrop-filter: blur(40px);
-    background: #ffffffb5;
-        }
-
-        #logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        #desktop-nav {
-            display: flex;
-            align-items: center;
-        }
-
-        #desktop-nav a {
-                margin-left: 48px;
-    text-decoration: none;
-    color: #282828;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-
-        }
-
-        #desktop-nav a:hover {
-            color: #0000e6;
-        }
-
-        /* Mobile Menu Button (visible on mobile, placed right) */
-        #mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            color: var(--primary);
-        }
-
-        /* Full Page Mobile Menu Overlay */
-        #mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--bg);
-            z-index: 200;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #mobile-menu.active {
-            display: flex;
-        }
-
-        #mobile-menu a {
-           font-size: 32px;
-    font-weight: 400;
-    margin: 15px 0;
-    text-decoration: none;
-    color: rgb(49, 49, 49);
-    transition: opacity 0.3s;
-    font-family: "Hahmlet", serif;
-    font-weight: 500;
-        }
-
-        #mobile-menu a:hover {
-            color:#0000e6;
-        }
-
-        #close-menu-btn {
-            position: absolute;
-            top: 40px;
-            right: 60px;
-            background: none;
-            border: none;
-            font-size: 36px;
-            cursor: pointer;
-            color: var(--primary);
-        }
-
-        /* Main Content */
-        #main-content {
-           opacity: 0;
-    transition: opacity 1.2s ease 0.6s;
-    padding: 165px 10px 10px 10px;
-    max-width: 1400px;
-    margin: 0 auto;
-        }
-
-        #main-content.visible {
-            opacity: 1;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 120px 0 180px;
-        }
-
-        .hero h1 {
-           font-family: "Hahmlet", serif;
-            font-size: 9em;
-            font-weight: 500;
-            letter-spacing: 3px;
-            margin-bottom: 0px;
-            color: var(--primary);
-            height: 200px;
-        }
-
-        .hero p {
-          font-size: 16px;
-    font-weight: 600;
-    margin: 0px;
-    font-family: "Red Hat Display", sans-serif;
-    color: #3e3e3e;
-    text-transform: uppercase;
-    letter-spacing: 20px;
-        }
-
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 80px;
-            margin: 120px 0;
-        }
-
-        .service-card {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .service-card h2 {
-          font-family: "Hahmlet", serif;
-    font-size: 2em;
-    font-weight: 500;
-    letter-spacing: 2px;
-    margin-bottom: 24px;
-    color: var(--primary);
-        }
-
-        .service-card p {
-                font-size: 17px;
-    font-weight: 300;
-    margin-bottom: 32px;
-    font-family: "Red Hat Display", sans-serif;
-    color: #3e3e3e;
-
-        }
-
-        .explore-btn {
-            display: inline-block;
-            padding: 12px 36px;
-            border: 1px solid var(--primary);
-            text-decoration: none;
-            color: var(--primary);
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-
-        .explore-btn:hover {
-            background: var(--primary);
-            color: var(--bg);
-        }
-
-        .cta-section {
-            text-align: center;
-            padding: 120px 0;
-            background: var(--primary);
-            color: var(--bg);
-        }
-
-        .cta-section h2 {
-           font-family: "Hahmlet", serif;
-            font-size: clamp(48px, 6vw, 64px);
-            font-weight: 500;
-            margin-bottom: 24px;
-        }
-
-        .cta-section p {
-           font-size: 18px;
-    font-weight: 300;
-    max-width: 700px;
-    margin: 0 auto 40px;
-    opacity: 0.8;
-    font-family: "Red Hat Display", sans-serif;
-        }
-
-        .cta-btn {
-            padding: 14px 48px;
-            border: 1px solid var(--bg);
-            background: transparent;
-            color: var(--bg);
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            background: var(--bg);
-            color: var(--primary);
-        }
-
-        footer {
-                text-align: center;
-    padding: 30px;
-    font-size: 13px;
-    font-weight: 300;
-    color: #1c1c1c;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            #main-logo.authenticated {
-                width: 80px;
-                top: 30px;
-                left: 30px;
-            }
-
-            header {
-                padding: 0 30px;
-            }
-
-            #desktop-nav {
-                display: none;
-            }
-
-            #mobile-menu-btn {
-                display: block;
-            }
-
-            
-            .hero h1 {
-              font-family: "Hahmlet", serif;
-        font-size: 80px;
-        font-weight: 500;
-        letter-spacing: 3px;
-        margin-bottom: 0px;
-        color: var(--primary);
-        height: 125px;
-                }
-            .services {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
- .cta-section {
-           text-align: center;
-    padding: 50px 5px;
-    background: var(--primary);
-    color: var(--bg);
-        }
-            #close-menu-btn {
-                top: 40px;
-        right: 33px;
-        font-weight: 500;
-            }
- .hero p {
-          font-size: 16px;
-    font-weight: 600;
-    margin: -10px;
-    font-family: "Red Hat Display", sans-serif;
-    color: #3e3e3e;
-    text-transform: uppercase;
-    letter-spacing: 20px;
-        }
-            #mobile-menu a {
-                font-size: 28px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #password-input {
-                width: 80vw;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Login Screen -->
-    <div id="login-screen">
-        <img id="main-logo" src="https://i.ibb.co/bjy8q1jz/bsmfi-logo.png" alt="BS&MFI">
-        <div id="password-form">
-            <input type="text" id="password-input" placeholder="Enter passcode">
-            <button id="submit-btn">SUBMIT</button>
-            <div id="error-message"></div>
-        </div>
-        <a href="https://mfi0212.github.io/MFI/entrysheet" style="margin-top: 30px;
-    color: #3e3e3e;
-    text-decoration: underline;
-    text-underline-position: under;
-    font-family: 'Cormorant Garamond', serif;">ENTER INTO BS&MFI</a>
-    </div>
-
-    <!-- Fixed Header: Logo Left + Nav Right -->
-    <header>
-        <div id="logo-container">
-            <img id="header-logo" src="https://i.ibb.co/bjy8q1jz/bsmfi-logo.png" alt="BS&MFI" style="display:none; width:100px;">
-        </div>
-        <nav id="desktop-nav">
-            <a href="https://blackswan19.github.io/bs-mfi/account">Account</a>
-            <a href="https://blackswan19.github.io/golden/FM/takemoney">Take Money</a>
-            <a href="https://forms.gle/RzTJ8W9bwmm8DVj2A">Helper</a>
-        </nav>
-        <button id="mobile-menu-btn">☰</button>
-    </header>
-
-    <!-- Full Page Mobile Menu -->
-    <div id="mobile-menu">
-        <button id="close-menu-btn">×</button>
-        <a href="https://blackswan19.github.io/bs-mfi/account">My Account</a>
-        <a href="https://blackswan19.github.io/golden/FM/takemoney">Take Money</a>
-        <a href="https://forms.gle/RzTJ8W9bwmm8DVj2A">Helper</a>
-    </div>
-
-    <div id="main-content">
-        <section class="hero">
-            <h1>BS&MFI</h1>
-            <p>Services</p>
-        </section>
-
-        <section class="services">
-            <div class="service-card">
-                <h2>Delay It</h2>
-                <p>If you can't repay the amount on the return date, By using Delay it you can extend your return date based on your wish.</p>
-                <a href="https://mfi0212.github.io/swan/offer/delayit" class="explore-btn">Explore Delay It</a>
-            </div>
-
-            <div class="service-card">
-                <h2>Split It</h2>
-                <p>Now you can now split your repayment into smaller amounts, making it easier to pay back in a way that suits you</p>
-                <a href="https://mfi0212.github.io/swan/offer/split" class="explore-btn">Explore Split It</a>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <h2>Stars</h2>
-            <p>A service by which you can reduce the interest by buying the stars and use them to reduce the interest.</p>
-            <a href="https://blackswan19.github.io/golden/FM/starspage" class="cta-btn">Explore Now</a>
-        </section>
-
-        <footer>
-           © BS&MFI. All rights reserved.
-        </footer>
-    </div>
-
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BS&MFI Services</title> <link rel="icon" href="https://i.ibb.co/213w1VQD/titlelogo.png" /> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> <style> * { margin:0; padding:0; box-sizing:border-box;letter-spacing:0.6px; } body { font-family: "Red Hat Display", sans-serif;} * { margin: 0; padding: 0; box-sizing: border-box;scrollbar-width: none; } :root { --primary: #0000e6; /* Your main blue color */ --text: #1a1a1a; --bg: #ffffff; } * { margin: 0; padding: 0; box-sizing: border-box;scrollbar-width: none; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } body { font-family: 'Poppins', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.8; overflow-x: hidden; } /* Login Screen */ #login-screen { position: fixed; inset: 0; background-color: var(--bg); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1); } #main-logo { width: 450px; max-width: 95vw; transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1); } #main-logo.authenticated { width: 100px; position: fixed; top: 10px; left: 60px; z-index: 100; } #password-form { display: flex; margin-top: 20px; opacity: 0; transition: opacity 0.8s ease 0.4s; justify-content: center; align-items: center; flex-direction: column; } #password-input { padding: 12px 24px; font-size: 18px; font-weight: 500; background: transparent; width: 300px; text-align: center; color: var(--primary); outline: none; border: none; text-transform: none; font-family: "Red Hat Display", sans-serif; border-bottom: solid 1.5px #000000a6; } #password-input:hover{ background-color: rgba(0, 0, 0, 0.023); } #password-input:focus{ border-bottom: solid 2px #1100ff; color: #1100ff; } #submit-btn { margin-top: 24px; padding: 14px 48px; background: transparent; border: 1px solid var(--primary); font-size: 14px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); cursor: pointer;font-family: "Red Hat Display", sans-serif; transition: all 0.3s ease; } #submit-btn:hover { background: var(--primary); color: var(--bg); } #error-message { margin-top: 16px; font-size: 14px; color: #a00; font-weight: 300; } /* Fixed Header - Logo left, Nav right */ header { position: fixed; top: 0; left: 0; right: 0; height: 120px; z-index: 90; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; backdrop-filter: blur(40px); background: #ffffffb5; } #logo-container { display: flex; align-items: center; } #desktop-nav { display: flex; align-items: center; } #desktop-nav a { margin-left: 48px; text-decoration: none; color: #282828; font-size: 13px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; } #desktop-nav a:hover { color: #0000e6; } /* Mobile Menu Button (visible on mobile, placed right) */ #mobile-menu-btn { display: none; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--primary); } /* Full Page Mobile Menu Overlay */ #mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 200; flex-direction: column; justify-content: center; align-items: center; } #mobile-menu.active { display: flex; } #mobile-menu a { font-size: 32px; font-weight: 400; margin: 15px 0; text-decoration: none; color: rgb(49, 49, 49); transition: opacity 0.3s; font-family: "Hahmlet", serif; font-weight: 500; } #mobile-menu a:hover { color:#0000e6; } #close-menu-btn { position: absolute; top: 40px; right: 60px; background: none; border: none; font-size: 36px; cursor: pointer; color: var(--primary); } /* Main Content */ #main-content { opacity: 0; transition: opacity 1.2s ease 0.6s; padding: 165px 10px 10px 10px; max-width: 1400px; margin: 0 auto; } #main-content.visible { opacity: 1; } .hero { text-align: center; padding: 120px 0 180px; } .hero h1 { font-family: "Hahmlet", serif; font-size: 9em; font-weight: 500; letter-spacing: 3px; margin-bottom: 0px; color: var(--primary); height: 200px; } .hero p { font-size: 16px; font-weight: 600; margin: 0px; font-family: "Red Hat Display", sans-serif; color: #3e3e3e; text-transform: uppercase; letter-spacing: 20px; } .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 80px; margin: 120px 0; } .service-card { text-align: center; padding: 40px; } .service-card h2 { font-family: "Hahmlet", serif; font-size: 2em; font-weight: 500; letter-spacing: 2px; margin-bottom: 24px; color: var(--primary); } .service-card p { font-size: 17px; font-weight: 300; margin-bottom: 32px; font-family: "Red Hat Display", sans-serif; color: #3e3e3e; } .explore-btn { display: inline-block; padding: 12px 36px; border: 1px solid var(--primary); text-decoration: none; color: var(--primary); font-size: 12px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease; } .explore-btn:hover { background: var(--primary); color: var(--bg); } .cta-section { text-align: center; padding: 120px 0; background: var(--primary); color: var(--bg); } .cta-section h2 { font-family: "Hahmlet", serif; font-size: clamp(48px, 6vw, 64px); font-weight: 500; margin-bottom: 24px; } .cta-section p { font-size: 18px; font-weight: 300; max-width: 700px; margin: 0 auto 40px; opacity: 0.8; font-family: "Red Hat Display", sans-serif; } .cta-btn { padding: 14px 48px; border: 1px solid var(--bg); background: transparent; color: var(--bg); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; } .cta-btn:hover { background: var(--bg); color: var(--primary); } footer { text-align: center; padding: 30px; font-size: 13px; font-weight: 300; color: #1c1c1c; } /* Responsive */ @media (max-width: 768px) { #main-logo.authenticated { width: 80px; top: 30px; left: 30px; } header { padding: 0 30px; } #desktop-nav { display: none; } #mobile-menu-btn { display: block; } .hero h1 { font-family: "Hahmlet", serif; font-size: 80px; font-weight: 500; letter-spacing: 3px; margin-bottom: 0px; color: var(--primary); height: 125px; } .services { grid-template-columns: 1fr; gap: 60px; } .cta-section { text-align: center; padding: 50px 5px; background: var(--primary); color: var(--bg); } #close-menu-btn { top: 40px; right: 33px; font-weight: 500; } .hero p { font-size: 16px; font-weight: 600; margin: -10px; font-family: "Red Hat Display", sans-serif; color: #3e3e3e; text-transform: uppercase; letter-spacing: 20px; } #mobile-menu a { font-size: 28px; } } @media (max-width: 480px) { #password-input { width: 80vw; } } </style> </head> <body> <!-- Login Screen --> <div id="login-screen"> <img id="main-logo" src="https://i.ibb.co/bjy8q1jz/bsmfi-logo.png" alt="BS&MFI"> <div id="password-form"> <input type="text" id="password-input" placeholder="Enter passcode"> <button id="submit-btn">SUBMIT</button> <div id="error-message"></div> </div> <a href="https://mfi0212.github.io/MFI/entrysheet" style="margin-top: 30px; color: #3e3e3e; text-decoration: underline; text-underline-position: under; font-family: 'Cormorant Garamond', serif;">ENTER INTO BS&MFI</a> </div> <!-- Fixed Header: Logo Left + Nav Right --> <header> <div id="logo-container"> <img id="header-logo" src="https://i.ibb.co/bjy8q1jz/bsmfi-logo.png" alt="BS&MFI" style="display:none; width:100px;"> </div> <nav id="desktop-nav"> <a href="https://blackswan19.github.io/bs-mfi/account">Account</a> <a href="https://blackswan19.github.io/bs-mfi/applydivert">Take Money</a> <a href="https://forms.gle/RzTJ8W9bwmm8DVj2A">Helper</a> </nav> <button id="mobile-menu-btn">☰</button> </header> <!-- Full Page Mobile Menu --> <div id="mobile-menu"> <button id="close-menu-btn">×</button> <a href="https://blackswan19.github.io/bs-mfi/account">My Account</a> <a href="https://blackswan19.github.io/golden/FM/takemoney">Take Money</a> <a href="https://forms.gle/RzTJ8W9bwmm8DVj2A">Helper</a> </div> <div id="main-content"> <section class="hero"> <h1>BS&MFI</h1> <p>Services</p> </section> <section class="services"> <div class="service-card"> <h2>Delay It</h2> <p>If you can't repay the amount on the return date, By using Delay it you can extend your return date based on your wish.</p> <a href="https://mfi0212.github.io/swan/offer/delayit" class="explore-btn">Explore Delay It</a> </div> <div class="service-card"> <h2>Split It</h2> <p>Now you can now split your repayment into smaller amounts, making it easier to pay back in a way that suits you</p> <a href="https://mfi0212.github.io/swan/offer/split" class="explore-btn">Explore Split It</a> </div> </section> <section class="cta-section"> <h2>Stars</h2> <p>A service by which you can reduce the interest by buying the stars and use them to reduce the interest.</p> <a href="https://blackswan19.github.io/golden/FM/starspage" class="cta-btn">Explore Now</a> </section> <footer> © BS&MFI. All rights reserved. </footer> </div>
     <script>
-    // document.addEventListener('contextmenu', e => e.preventDefault());
 
-    const correctPassword = ['1234', '6275'];
+document.addEventListener('contextmenu', e => e.preventDefault());
 
-    const loginScreen = document.getElementById('login-screen');
-    const mainLogo = document.getElementById('main-logo');
-    const passwordForm = document.getElementById('password-form');
-    const passwordInput = document.getElementById('password-input');
-    const submitBtn = document.getElementById('submit-btn');
-    const errorMessage = document.getElementById('error-message');
-    const mainContent = document.getElementById('main-content');
-    const headerLogo = document.getElementById('header-logo');
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const closeMenuBtn = document.getElementById('close-menu-btn');
+const correctPassword = ['1234', '6275'];
+const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
-    window.addEventListener('load', () => {
-        passwordForm.style.opacity = '1';
-    });
+const loginScreen = document.getElementById('login-screen');
+const mainLogo = document.getElementById('main-logo');
+const passwordForm = document.getElementById('password-form');
+const passwordInput = document.getElementById('password-input');
+const submitBtn = document.getElementById('submit-btn');
+const errorMessage = document.getElementById('error-message');
+const mainContent = document.getElementById('main-content');
+const headerLogo = document.getElementById('header-logo');
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const closeMenuBtn = document.getElementById('close-menu-btn');
 
-    submitBtn.addEventListener('click', () => {
-        errorMessage.textContent = '';
+function authenticate() {
+    mainLogo.classList.add('authenticated');
+    headerLogo.style.display = 'block';
 
-        const inputValue = passwordInput.value.trim();
+    loginScreen.style.opacity = '0';
+    setTimeout(() => {
+        loginScreen.style.display = 'none';
+    }, 1000);
 
-        if (correctPassword.includes(inputValue)) {
-            mainLogo.classList.add('authenticated');
-            headerLogo.style.display = 'block';
+    setTimeout(() => {
+        mainContent.classList.add('visible');
+    }, 800);
 
-            loginScreen.style.opacity = '0';
-            setTimeout(() => {
-                loginScreen.style.display = 'none';
-            }, 1000);
+    localStorage.setItem('lastAuthTime', Date.now().toString());
+}
 
-            setTimeout(() => {
-                mainContent.classList.add('visible');
-            }, 800);
+window.addEventListener('load', () => {
+    passwordForm.style.opacity = '1';
 
-            passwordInput.value = '';
-        } else {
-            errorMessage.textContent = 'Incorrect Password';
-            passwordInput.value = '';
-            passwordInput.focus();
+    const lastAuth = localStorage.getItem('lastAuthTime');
+    if (lastAuth) {
+        const timeSince = Date.now() - parseInt(lastAuth, 10);
+        if (timeSince < TWENTY_FOUR_HOURS) {
+            authenticate();
+            return;
         }
-    });
+    }
+});
 
-    passwordInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            submitBtn.click();
-        }
-    });
+submitBtn.addEventListener('click', () => {
+    errorMessage.textContent = '';
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
-    });
+    const inputValue = passwordInput.value.trim();
 
-    closeMenuBtn.addEventListener('click', () => {
+    if (correctPassword.includes(inputValue)) {
+        passwordInput.value = '';
+        authenticate();
+    } else {
+        errorMessage.textContent = 'Incorrect Password';
+        passwordInput.value = '';
+        passwordInput.focus();
+    }
+});
+
+passwordInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        submitBtn.click();
+    }
+});
+
+mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.add('active');
+});
+
+closeMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+});
+
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
     });
-
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
-    });
-
-    ['account-link', 'mobile-account', 'take-money-link', 'mobile-take-money', 'contact-link', 'mobile-contact'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert('Feature coming soon.');
-            });
-        }
-    });
+});
 </script>
 </body>
 </html>
