@@ -221,24 +221,24 @@ span#grand-total-amount {
         }
 
         .amounts-section {
-           margin: 50px auto;
+           margin: 50px auto 26px auto;
     max-width: 1200px;
     padding: 0 20px;
         }
 
         .amounts-section h2 {
-            font-size: 21px;
+           font-size: 19px;
     text-align: center;
     margin-bottom: unset;
     color: #000000;
+    font-weight: 500;
         }
 
         .amount-buttons {
-         display: flex;
-    gap: 30px;
-    margin-bottom: 80px;
+       display: flex;
+    gap: 14px;
     overflow: auto;
-    padding: 20px;
+    padding: 10px 0px 10px 0px;
     position: sticky;
     top: 105px;
     background: white;
@@ -397,10 +397,16 @@ td {
         <div class="custom-content" id="custom-content"></div>
 
         <div class="amounts-section">
-            <h2>Amounts Borrowed</h2>
-            <div class="amount-buttons" id="amount-buttons"></div>
-
             <div id="loan-panels"></div>
+            <div class="nofamounts" style="position: sticky;
+    bottom: 0px;
+    background: white;
+    padding: 0px;
+    border-top: solid 1px;
+    width: 100%;margin-top: 50px;">
+                 <h2>Amounts Borrowed</h2>
+                <div class="amount-buttons" id="amount-buttons"></div>
+            </div>
         </div>
 
         <footer>
