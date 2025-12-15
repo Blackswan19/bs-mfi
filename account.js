@@ -55,9 +55,9 @@ document.addEventListener('contextmenu', e => e.preventDefault());
                 tierPoints: 5,
                 showCustomContent: "no",
                 loans: [
-                    { planDate: "25-05-2025", endDate: "19-12-2025(Extended to 15 days)", interest: 1000, takenAmount: 6420, takenFrom: "Delayit offer", fineRate: 50 },
+                    { planDate: "25-05-2025", endDate: "19-12-2025", interest: 1000, takenAmount: 6420, takenFrom: "Delayit offer", fineRate: 50 },
                     { planDate: "03-12-2025", endDate: "02-01-2026", interest: 1705, takenAmount: 5500, takenFrom: "MLendings", fineRate: 40 },
-                    { planDate: "29-09-2025", endDate: "12-01-2026(Extended to 30 days)", interest: 1600, takenAmount: 6100, takenFrom: "MLLD", fineRate: 40 },
+                    { planDate: "29-09-2025", endDate: "12-01-2026", interest: 1600, takenAmount: 6100, takenFrom: "MLLD", fineRate: 40 },
                 ],
             },
             "Cherish@123": {
