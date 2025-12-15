@@ -145,11 +145,19 @@
         }
 span#grand-total-amount {
     font-family: "Red Hat Display", sans-serif;
-    font-size: 15px;
+    font-size: 20px;
+    margin: 0px 5px;
+    font-weight: 500;
 }
         .profile-header {
-            text-align: center;
-            padding:20px;
+          text-align: center;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: sticky;
+    top: 100px;
         }
 
         .membership-icon {
@@ -174,12 +182,11 @@ span#grand-total-amount {
         }
 
         .stats-grid {
-           display: flex;
-    margin: 10px auto;
+          display: flex;
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    background: #00000017;
+    padding: 10px;
         }
 
        
@@ -223,7 +230,7 @@ span#grand-total-amount {
         .amounts-section {
            margin: 50px auto 26px auto;
     max-width: 1200px;
-    padding: 0 20px;
+    padding: 0;
         }
 
         .amounts-section h2 {
@@ -235,13 +242,13 @@ span#grand-total-amount {
         }
 
         .amount-buttons {
-       display: flex;
+      display: flex;
     gap: 14px;
     overflow: auto;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 20px 10px 20px;
     position: sticky;
     top: 105px;
-    background: white;
+    background: #e8e8e8;
     width: 100%;
     scrollbar-width: thin;
         }
@@ -257,7 +264,7 @@ text-align: center;
 }
         .amount-btn {
           background: transparent;
-    color: blue;
+    color: rgb(0, 0, 0);
     text-transform: uppercase;
     border: none;
     cursor: pointer;
@@ -325,13 +332,12 @@ td {
         }
 
         .grand-total {
-            text-align: center;
+           text-align: center;
     padding: 10px;
-    background: var(--main-blue);
+    background: #0000ff;
     color: white;
     font-size: 20px;
     width: 100%;
-    margin-top: 10px;
         }
 
         footer {
@@ -376,9 +382,6 @@ td {
             <h2 class="client-name" id="client-name"></h2>
             <p class="membership-type" id="membership-type" style="display: none;"></p>
         </div>
- <div class="grand-total" id="grand-total">
-                Total Amount to Repay: ₹<span id="grand-total-amount">0</span>
-            </div>
         <div class="stats-grid">
             <div class="stat-card">
                 <h3>Stars</h3>
@@ -393,14 +396,16 @@ td {
                 <p class="stat-value" id="tier-points">0</p>
             </div>
         </div>
-
+        <div class="grand-total" id="grand-total">
+            Total Amount to Repay: ₹<span id="grand-total-amount">0</span>
+        </div>
         <div class="custom-content" id="custom-content"></div>
 
         <div class="amounts-section">
             <div id="loan-panels"></div>
             <div class="nofamounts" style="position: sticky;
     bottom: 0px;
-    background: white;
+    background: #e8e8e8;
     padding: 0px;
     border-top: solid 1px;
     width: 100%;margin-top: 50px;">
