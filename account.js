@@ -51,7 +51,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
                 membershipIcon: "https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/100/2.gif",
                 profileBackground: "rgb(0 0 230)",
                 stars: 70,
-                coins: 1,
+                coins: 0,
                 tierPoints: 5,
                 showCustomContent: "no",
                 loans: [
