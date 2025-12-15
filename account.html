@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BSMFI Portfolio - Exclusive Access</title>
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -18,15 +18,7 @@
             --text: #000000;
             --light-text: #ffffff;
         }
-* {
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
+
         body {
             margin: 0;
             padding: 0;
@@ -126,8 +118,8 @@
         }
 
         header {
-               text-align: center;
-    background-color: var(--light-blue);
+              text-align: center;
+    background-color: #e8e8e8;
     position: sticky;
     top: 0px;
         }
@@ -141,23 +133,15 @@
     font-size: 15px;
     color: #333;
     font-family: "Red Hat Display", sans-serif;
-    font-weight: 500;
+    font-weight: 600;
         }
 span#grand-total-amount {
     font-family: "Red Hat Display", sans-serif;
-    font-size: 20px;
-    margin: 0px 5px;
-    font-weight: 500;
+    font-size: 15px;
 }
         .profile-header {
-          text-align: center;
-    padding: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    position: sticky;
-    top: 100px;
+            text-align: center;
+            padding:25px;
         }
 
         .membership-icon {
@@ -170,9 +154,10 @@ span#grand-total-amount {
         }
 
         .client-name {
-          font-size: 25px;
-    margin: 10px 0 15px 0;
+         font-size: 21px;
+    margin: 14px 0 0px 0;
     color: #ffffff;
+    font-weight: 500;
         }
 
         .membership-type {
@@ -183,17 +168,21 @@ span#grand-total-amount {
 
         .stats-grid {
           display: flex;
+    margin: 0px auto;
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    padding: 10px;
+    background: #00000017;
+    padding: 6px 0px;
         }
 
        
 
         .stat-card h3 {
-           font-size: 18px;
+             font-size: 16px;
     color: var(--main-blue);
+    font-weight: 500;
+
         }
 
         .stat-value {
@@ -228,13 +217,14 @@ span#grand-total-amount {
         }
 
         .amounts-section {
-           margin: 50px auto 26px auto;
+             margin: 50px auto 35px auto;
     max-width: 1200px;
-    padding: 0;
+    padding: 0 10px;
+
         }
 
         .amounts-section h2 {
-           font-size: 19px;
+          font-size: 20px;
     text-align: center;
     margin-bottom: unset;
     color: #000000;
@@ -242,13 +232,13 @@ span#grand-total-amount {
         }
 
         .amount-buttons {
-      display: flex;
-    gap: 14px;
+         display: flex;
+    gap: 30px;
     overflow: auto;
-    padding: 10px 20px 10px 20px;
+    padding: 20px;
     position: sticky;
     top: 105px;
-    background: #ffffff;
+    background: white;
     width: 100%;
     scrollbar-width: thin;
         }
@@ -264,7 +254,7 @@ text-align: center;
 }
         .amount-btn {
           background: transparent;
-    color: rgb(0, 0, 0);
+    color: blue;
     text-transform: uppercase;
     border: none;
     cursor: pointer;
@@ -278,7 +268,7 @@ text-align: center;
         }
 
         .amount-btn:hover, .amount-btn.active {
-           background: #0000ff;
+           background: #0000e6;
     color: #ffffff;
     border: solid blue;
         }
@@ -303,11 +293,11 @@ text-align: center;
         }
 
         th, td {
-           padding: 14px;
+              padding: 14px;
     text-align: left;
-    font-size: 16px;
-    font-weight: 500;
-    background: white;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: 900;
         }
 td {
     font-family: "Red Hat Display", sans-serif;
@@ -315,9 +305,14 @@ td {
     font-weight: 500;
     text-align: end;
 }
+        th {
+            color: var(--main-blue);
+    font-weight: 500;
+    font-size: 15px;
+        }
 
         .summary-row td {
-            font-weight: 500;
+            font-weight: bold;
             font-size: 15px;
             background: black;
             color: white;
@@ -325,16 +320,17 @@ td {
 
         .total-repay {
             color: #b30000;
-            font-weight: 500;
+            font-weight: bold;
         }
 
         .grand-total {
            text-align: center;
     padding: 10px;
-    background: #0000ff;
+    background: var(--main-blue);
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     width: 100%;
+    margin-top: 0px;
         }
 
         footer {
@@ -379,6 +375,9 @@ td {
             <h2 class="client-name" id="client-name"></h2>
             <p class="membership-type" id="membership-type" style="display: none;"></p>
         </div>
+ <div class="grand-total" id="grand-total">
+                Total Amount to Repay: ₹<span id="grand-total-amount">0</span>
+            </div>
         <div class="stats-grid">
             <div class="stat-card">
                 <h3>Stars</h3>
@@ -393,23 +392,14 @@ td {
                 <p class="stat-value" id="tier-points">0</p>
             </div>
         </div>
-        <div class="grand-total" id="grand-total">
-            Total Amount to Repay: ₹<span id="grand-total-amount">0</span>
-        </div>
+
         <div class="custom-content" id="custom-content"></div>
 
         <div class="amounts-section">
+            <h2>Amounts Borrowed</h2>
+            <div class="amount-buttons" id="amount-buttons"></div>
+
             <div id="loan-panels"></div>
-            <div class="nofamounts" style="position: sticky;
-    bottom: 0px;
-    background: #ffffff;
-    padding: 0px;
-    border-top: solid 1px #0000001f;
-    width: 100%;
-    margin-top: 50px;">
-                 <h2>Amounts Borrowed</h2>
-                <div class="amount-buttons" id="amount-buttons"></div>
-            </div>
         </div>
 
         <footer>
