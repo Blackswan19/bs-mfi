@@ -87,7 +87,10 @@ body {
 	left: 60px;
 	z-index: 100;
 }
-
+a{
+    text-decoration: none;
+    color: var(--primary);
+}
 #password-form {
 	display: flex;
 	margin-top: 20px;
@@ -112,7 +115,17 @@ body {
 	font-family: "Red Hat Display", sans-serif;
 	border-bottom: solid 1.5px #000000a6;
 }
-
+p#header-logo a{
+display: block;
+    font-family: 'Hahmlet', serif;
+    font-size: 30px;
+    position: fixed;
+    font-weight: 600;    top: 10px;
+    color: var(--primary);
+}
+p#header-logo a:hover{
+    color: black;
+}
 #password-input:hover {
 	background-color: rgba(0, 0, 0, 0.023);
 }
@@ -198,7 +211,9 @@ header {
 	cursor: pointer;
     color: var(--primary);
 }
-
+#mobile-menu-btn:hover{
+    color: black;
+}
 /* Full Page Mobile Menu Overlay */
 #mobile-menu {
 	display: none;
@@ -243,7 +258,9 @@ header {
 	cursor: pointer;
 	color: var(--primary);
 }
-
+#close-menu-btn:hover{
+    color: black;
+}
 /* Main Content */
 #main-content {
 	opacity: 0;
@@ -292,7 +309,7 @@ header {
 
 .service-card {
 	text-align: center;
-	padding: 40px;
+    padding: 0px 15px;
 }
 
 .service-card h2 {
@@ -332,16 +349,17 @@ header {
 
 .cta-section {
 	text-align: center;
-	padding: 120px 0;
+	padding: 50px 20px 50px 20px;
 	background: var(--primary);
 	color: var(--bg);
 }
 
 .cta-section h2 {
 	font-family: "Hahmlet", serif;
-	font-size: clamp(48px, 6vw, 64px);
-	font-weight: 500;
-	margin-bottom: 24px;
+    font-size: clamp(48px, 6vw, 64px);
+    font-weight: 500;
+    margin-top: -35px;
+    margin-bottom: 15px;
 }
 
 .cta-section p {
@@ -372,10 +390,10 @@ header {
 
 footer {
 	text-align: center;
-	padding: 30px;
-	font-size: 13px;
-	font-weight: 300;
-	color: #1c1c1c;
+    padding: 15px 0px 0px 0px;
+    font-size: 13px;
+    font-weight: 300;
+    color: #1c1c1c;
 }
 
 /* Responsive */
@@ -397,7 +415,10 @@ footer {
 	#mobile-menu-btn {
 		display: block;
 	}
-
+p#header-logo a {
+    position: fixed;
+    left: 15px;
+}
 	.hero h1 {
 		font-family: "Hahmlet", serif;
 		font-size: 70px;
@@ -411,13 +432,6 @@ footer {
 	.services {
 		grid-template-columns: 1fr;
 		gap: 60px;
-	}
-
-	.cta-section {
-		text-align: center;
-		padding: 50px 5px;
-		background: var(--primary);
-		color: var(--bg);
 	}
 
 	#close-menu-btn {
@@ -460,12 +474,7 @@ footer {
         </div> <a href="https://mfi0212.github.io/MFI/entrysheet" style="margin-top: 30px; color: #3e3e3e; text-decoration: underline; text-underline-position: under; font-family: 'Cormorant Garamond', serif;">ENTER INTO BS&MFI</a> </div>
     <!-- Fixed Header: Logo Left + Nav Right -->
     <header>
-        <div id="logo-container"> <p id="header-logo" src="servicesmfilogo.png" alt="BS&MFI" style="display: block;
-    font-family: 'Hahmlet', serif;
-    font-size: 30px;
-    position: fixed;
-    left: 15px;
-    font-weight: 600;color: var(--primary);">BS&MFI</p> </div>
+        <div id="logo-container"> <p id="header-logo" src="servicesmfilogo.png" alt="BS&MFI"><a href="">BS&MFI</a></p> </div>
         <nav id="desktop-nav"> <a href="https://blackswan19.github.io/bs-mfi/account">Account</a> <a href="https://blackswan19.github.io/bs-mfi/applydivert">Take Money</a> <a href="https://forms.gle/RzTJ8W9bwmm8DVj2A">Helper</a> </nav>
         <button id="mobile-menu-btn"><i class="fa-solid fa-grip-lines"></i></button>
     </header>
