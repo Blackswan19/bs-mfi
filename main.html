@@ -162,10 +162,20 @@ p#header-logo a:hover{
 	font-weight: 300;
 }
 
-/* Fixed Header - Logo left, Nav right */
+marquee {
+    background: #000000;
+    position: fixed;
+    top: 0px;
+    z-index: 1000;
+    color: white;
+    font-size: 13px;
+    font-family: "Red Hat Display", sans-serif;
+    letter-spacing: 1.1px;
+    font-weight: 700;
+}
 header {
 	position: fixed;
-	top: 0;
+	top: 20px;
 	left: 0;
 	right: 0;
 	height: 80px;
@@ -314,86 +324,85 @@ header {
 
 .service-card h2 {
 	font-family: "Hahmlet", serif;
-	font-size: 2em;
-	font-weight: 500;
-	letter-spacing: 2px;
-	margin-bottom: 24px;
-	color: var(--primary);
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: var(--primary);
 }
 
 .service-card p {
-	font-size: 17px;
-	font-weight: 300;
-	margin-bottom: 32px;
-	font-family: "Red Hat Display", sans-serif;
-	color: #3e3e3e;
+	font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-family: "Red Hat Display", sans-serif;
+    color: #3e3e3e;
 }
 
 .explore-btn {
 	display: inline-block;
-	padding: 12px 36px;
-	border: 1px solid var(--primary);
-	text-decoration: none;
-	color: var(--primary);
-	font-size: 12px;
-	font-weight: 400;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	transition: all 0.3s ease;
+    padding: 12px 36px;
+   
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    text-decoration: underline 1.5px;
+    text-underline-position: under;
 }
 
-.explore-btn:hover {
-	background: var(--primary);
-	color: var(--bg);
+.explore-btn:hover { 
+	text-decoration: none;
+
 }
 
 .cta-section {
 	text-align: center;
-	padding: 50px 20px 50px 20px;
-	background: var(--primary);
-	color: var(--bg);
+    padding: 50px 20px 30px 20px;
+    background: var(--primary);
+    color: var(--bg);
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
 }
 
 .cta-section h2 {
 	font-family: "Hahmlet", serif;
-    font-size: clamp(48px, 6vw, 64px);
+    font-size: 20px;
     font-weight: 500;
-    margin-top: -35px;
-    margin-bottom: 15px;
+    margin-top: -30px;
 }
 
 .cta-section p {
-	font-size: 18px;
-	font-weight: 300;
-	max-width: 700px;
-	margin: 0 auto 40px;
-	opacity: 0.8;
-	font-family: "Red Hat Display", sans-serif;
+	    font-size: 14px;
+    font-weight: 500;
+    max-width: 700px;
+    margin: 0px auto 10px;
+    opacity: 0.8;
+    font-family: "Red Hat Display", sans-serif;
+    padding: 10px;
 }
 
 .cta-btn {
-	padding: 14px 48px;
-	border: 1px solid var(--bg);
-	background: transparent;
-	color: var(--bg);
-	font-size: 14px;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	text-decoration: none;
-	transition: all 0.3s ease;
-}
-
-.cta-btn:hover {
-	background: var(--bg);
-	color: var(--primary);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    text-decoration: underline 1px;
+    text-underline-position: under;
 }
 
 footer {
 	text-align: center;
     padding: 15px 0px 0px 0px;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 300;
     color: #1c1c1c;
+	font-family: "Red Hat Display", sans-serif;
 }
 
 /* Responsive */
@@ -442,7 +451,7 @@ p#header-logo a {
 	}
 
 	#close-menu-btn {
-		top: 25px;
+		top: 45px;
         right: 33px;
         font-size: 25px;
 	}
@@ -472,14 +481,13 @@ p#header-logo a {
 </head>
 
 <body>
-    <!-- Login Screen -->
     <div id="login-screen"> <img id="main-logo" src="servicesmfilogo.png" alt="BS&MFI">
         <div id="password-form">
             <input type="text" id="password-input" placeholder="Enter passcode">
             <button id="submit-btn">SUBMIT</button>
             <div id="error-message"></div>
         </div> <a href="https://mfi0212.github.io/MFI/entrysheet" style="margin-top: 30px; color: #3e3e3e; text-decoration: underline; text-underline-position: under; font-family: 'Cormorant Garamond', serif;">ENTER INTO BS&MFI</a> </div>
-    <!-- Fixed Header: Logo Left + Nav Right -->
+    <marquee behavior="" direction="">Welcome to BS&MFI Services</marquee>
     <header>
         <div id="logo-container"> <p id="header-logo" src="servicesmfilogo.png" alt="BS&MFI"><a href="">BS&MFI</a></p> </div>
         <nav id="desktop-nav"> <a href="https://blackswan19.github.io/bs-mfi/account">Account</a> <a href="https://blackswan19.github.io/bs-mfi/applydivert">Take Money</a> <a href="https://forms.gle/RzTJ8W9bwmm8DVj2A">Helper</a> </nav>
@@ -498,15 +506,15 @@ p#header-logo a {
             <div class="service-card">
                 <h2>Our Programs</h2>
                 <p>Services for all BS&MFI Services memberes to support their finances.</p> 
-                <a href="https://mfi0212.github.io/swan/offer/programs" class="explore-btn">Explore BS&MFI Programs</a> </div>
+                <a href="https://mfi0212.github.io/swan/offer/programs" class="explore-btn">Explore Now</a> </div>
             <div class="service-card">
                 <h2>Our Platforms</h2>
                 <p>Platforms for all BS&MFI Services memberes to support their finances.</p> 
-                <a href="https://mfi0212.github.io/swan/offer/platforms" class="explore-btn">Explore BS&MFI Platforms</a> </div>
+                <a href="https://mfi0212.github.io/swan/offer/platforms" class="explore-btn">Explore Now</a> </div>
         </section>
         <section class="cta-section">
             <h2>BsMansion</h2>
-            <p>A service by BS&MFI House which use to store the offer for months and use when you need.</p> <a href="https://mfi0212.github.io/MFI/bsmansion" class="cta-btn">Explore BsMansion</a> </section>
+            <p>A service by BS&MFI House which use to store the offer for months and use when you need.</p> <a href="https://mfi0212.github.io/MFI/bsmansion" class="cta-btn">Explore Now</a> </section>
         <footer> © BS&MFI. All rights reserved. </footer>
     </div>
 <script>
